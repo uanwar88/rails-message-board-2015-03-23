@@ -1,0 +1,18 @@
+- if session[:user]
+  a href="#{@board_id}/new_thread" class="no_decoration"
+    div class='btn'
+      | New thread
+    br
+    br
+
+div class="css_table"
+  table
+    tr
+      td Thread title
+      td Posted by
+    - @threads.each do |x|
+      tr
+        td
+          a href="/thread/#{x.id}" #{x.title}
+        td
+          a href="/user/#{x.user_id}" #{x.username}

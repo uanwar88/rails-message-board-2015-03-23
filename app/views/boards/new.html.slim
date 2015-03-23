@@ -1,0 +1,13 @@
+div class = "new_thread" style="max-width:575px;"
+  h2 Create new board
+  div class="form"
+    form action="/boards" method="post"
+      h3 Title:
+      input type="text" maxlength="100" name="board[title]" style="width: 95%;"
+      br
+      br
+      h3 Description:
+      input type="text" maxlength="100" name="board[description]" style="width: 95%;"
+      br
+      br
+      input type="submit" class='btn' style="margin-left: 0px; margin-top: 0px;"

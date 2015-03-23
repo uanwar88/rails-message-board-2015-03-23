@@ -1,0 +1,2 @@
+class MbThreadsController < ApplicationController
+end

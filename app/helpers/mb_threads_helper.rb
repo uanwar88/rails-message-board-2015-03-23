@@ -1,0 +1,2 @@
+module MbThreadsHelper
+end
