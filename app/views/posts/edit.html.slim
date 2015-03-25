@@ -1,0 +1,18 @@
+div class = "new_thread" style="max-width:575px;"
+  h2 Post reply
+  div class="form"
+    = form_for :post, url: "/posts/#{@post.id}", method: :patch do |f|
+      h3 Message:
+      = f.hidden_field :post_id, value: @post.id
+      = f.text_area :message, { value: @post.message, rows: 30, style: "width: 95%;" }
+      br
+      br
+      = f.submit "Submit", { class: 'btn', style: "margin-left: 0px; margin-top: 0px;" }
+
+    / form action="/reply" method="post"
+    /   h3 Message:
+    /   textarea name="message" rows="25" style="width: 95%;"
+    /   br
+    /   br
+    /   input type='hidden' value='#{@thread_id}' name="thread_id"
+    /   input type="submit" class='btn' style="margin-left: 0px; margin-top: 0px;"

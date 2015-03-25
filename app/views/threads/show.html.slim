@@ -1,0 +1,40 @@
+h1 style="margin-bottom: 5px;" #{@posts[0].post_title}
+a href="/boards/#{@board.id}" style="font-family: 'Lato';color: #4E9689; margin-left: 15px; text-decoration: none" ↳ #{@board.title}
+br
+a href="/" style="font-family: 'Lato';color: #4E9689; margin-left: 34px; text-decoration: none" ↳ Home
+div style="font-family: 'Lato';color: #4E9689; margin-left: 15px; margin-bottom: 25px;"
+  p
+    strong
+      | Current participants:
+    | #{}
+div class="posts_table"
+  table
+    - @posts.each_index do |x|
+      tr
+        td
+          span style="color: #0f2c6a"
+            h2 #{@posts[x].username}
+            | Total posts: #{@posts[x].total_posts}
+        td
+          - if session[:user]["admin"] == 1
+            - if x == 0
+              div style="float:right;"
+                a href="/boards/#{@board.id}/threads/#{@posts[x].mb_thread_id}/delete" style="color: #e03434"
+                  | X
+            - else
+              div style="float:right;"
+                a href="/posts/#{@posts[x].id}/delete" style="color: #e03434"
+                  | X
+          == simple_format(@posts[x].message)
+          - if session[:user] && session[:user]['username'] == @posts[x].username || session[:user]["admin"] == 1
+            div style="position: relative; float:right; margin-top: 15px; right: -5px;"
+              a href="/posts/#{@posts[x].id}/edit" style="color: #e03434"
+                | Edit
+
+br
+br
+
+- if session[:user]
+  a href='/boards/#{params[:board_id]}/threads/#{@posts[0].mb_thread_id}/posts/new' class="no_decoration"
+    div class='btn'
+      | Reply

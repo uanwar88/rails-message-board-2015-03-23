@@ -18,6 +18,7 @@ class BoardsController < ApplicationController
 
   def show
     @threads = MbThread.joins(:user).where(board_id: params[:id]).select("mb_threads.*, users.username AS username")
+    @board = Board.find(params[:id])
   end
 
 end

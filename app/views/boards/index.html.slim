@@ -1,12 +1,12 @@
 - if !session[:user]
-  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6cf2a4;"
-    a href="/login" class="no_decoration" style="color: #4E9689;"
+  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6dc9cd;"
+    a href="/login" class="no_decoration" style="color: #ffffff;"
       | Log in
   br
   br
 - if session[:user]
-  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6cf2a4;"
-    a href="/logout" class="no_decoration" style="color: #4E9689"
+  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6dc9cd;"
+    a href="/logout" class="no_decoration" style="color: #ffffff"
       | Log out
   br
   br
@@ -14,8 +14,8 @@
 - if session[:user]
   h3
     | Welcome, #{session[:user]['username']}!
-- if session[:admin] == 1
-  h4
+- if session[:user] && session[:user]["admin"] == 1
+  h4 style="color: #fd4e4e;"
     | Logged in as administrator.
 
 div class="css_table"
@@ -26,7 +26,7 @@ div class="css_table"
       tr
         td
           a href="/boards/#{x.id}" #{x['title']}
-    - if session[:admin] == 1
+    - if session[:user] && session[:user]["admin"] == 1
       tr
         td
           a href="/boards/new" style="color: #e03434"

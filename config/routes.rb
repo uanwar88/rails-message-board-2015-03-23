@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+
+  get 'posts/create'
+
   root 'boards#index'
   get 'boards/new' => 'boards#new'
   post 'boards' => 'boards#create'
-  get 'boards/:id' => 'boards#show'
+  get 'boards/:id' => 'boards#show', as: "board"
 
-  get 'boards/:id/threads/new' => 'threads#new'
-  post 'threads' => 'threads#create'
-  get 'threads/:id' => 'threads#show'
-  get 'threads/:id/posts/:new' => 'posts#new'
-  post 'posts' => 'posts#create'
+  get 'boards/:board_id/threads/new' => 'threads#new'
+  get '/boards/:board_id/threads/:id' => 'threads#show', as: "thread"
+  post 'boards/:id' => 'threads#create'
+  get 'boards/:board_id/threads/:id/delete' => 'threads#delete'
+
+  get '/boards/:board_id/threads/:thread_id/posts/new' => 'posts#new'
+  post '/boards/:board_id/threads/:thread_id' => 'posts#create'
+  get 'posts/:id/delete' => 'posts#delete'
+  get 'posts/:id/edit' => 'posts#edit'
+  patch 'posts/:id' => 'posts#update'
 
   get 'users/new' => 'users#new'
   post 'users' => 'users#create'
@@ -17,8 +26,6 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
 
-
-  delete 'posts/:id' => 'posts#delete'
   delete 'threads/:id' => 'threads#delete'
   delete 'boards/:id' => 'boards#delete'
   delete 'users/:id' => 'users#delete'

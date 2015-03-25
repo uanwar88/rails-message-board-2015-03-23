@@ -1,0 +1,21 @@
+div class = "new_thread" style="max-width:575px;"
+  h2 style="margin-bottom: 15px" Post reply
+  div class="form"
+    = form_for :mb_thread, url: "/boards/#{params[:board_id]}" do |f|
+      h3 Title:
+      = f.text_field :title, {style: "width: 95%;"}
+      br
+      br
+      h3 Message:
+      = f.text_area :message, {rows: 30, style: "width: 95%;"}
+      br
+      br
+      = f.submit "Submit", { class: 'btn', style: "margin-left: 0px; margin-top: 0px;" }
+
+    / form action="/reply" method="post"
+    /   h3 Message:
+    /   textarea name="message" rows="25" style="width: 95%;"
+    /   br
+    /   br
+    /   input type='hidden' value='#{@thread_id}' name="thread_id"
+    /   input type="submit" class='btn' style="margin-left: 0px; margin-top: 0px;"
