@@ -5,8 +5,8 @@ a href="/" style="font-family: 'Lato';color: #4E9689; margin-left: 34px; text-de
 div style="font-family: 'Lato';color: #4E9689; margin-left: 15px; margin-bottom: 25px;"
   p
     strong
-      | Current participants:
-    | #{}
+      | Current participants:&nbsp;
+    = join_usernames(@posts)
 div class="posts_table"
   table
     - @posts.each_index do |x|
@@ -16,20 +16,19 @@ div class="posts_table"
             h2 #{@posts[x].username}
             | Total posts: #{@posts[x].total_posts}
         td
-          - if session[:user]["admin"] == 1
-            - if x == 0
-              div style="float:right;"
-                a href="/boards/#{@board.id}/threads/#{@posts[x].mb_thread_id}/delete" style="color: #e03434"
-                  | X
-            - else
-              div style="float:right;"
-                a href="/posts/#{@posts[x].id}/delete" style="color: #e03434"
-                  | X
           == simple_format(@posts[x].message)
-          - if session[:user] && session[:user]['username'] == @posts[x].username || session[:user]["admin"] == 1
-            div style="position: relative; float:right; margin-top: 15px; right: -5px;"
-              a href="/posts/#{@posts[x].id}/edit" style="color: #e03434"
-                | Edit
+          - if session[:user]
+            div style="float:right; margin-top: 20px; right: -5px;"
+              - if session[:user]['username'] == @posts[x].username || session[:user]["admin"] == 1
+                  a href="/boards/#{params[:board_id]}/threads/#{@posts[x].mb_thread_id}/posts/#{@posts[x].id}/edit" style="font-size: 0.8em; color: #e03434"
+                    | Edit
+              - if session[:user]["admin"] == 1
+                - if x == 0
+                    a href="/boards/#{@board.id}/threads/#{@posts[x].mb_thread_id}/delete" style=" font-size: 0.8em; color: #e03434"
+                      |  | Delete
+                - else
+                    a href="/boards/#{params[:board_id]}/threads/#{params[:id]}/posts/#{@posts[x].id}/delete" style="font-size: 0.8em; color: #e03434"
+                      |  | Delete
 
 br
 br

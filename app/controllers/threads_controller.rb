@@ -1,4 +1,6 @@
 class ThreadsController < ApplicationController
+  helper ThreadsHelper
+
   def show
    #@thread =  MbThread.find(params[:id])
     #@posts = @thread.posts
@@ -31,10 +33,15 @@ class ThreadsController < ApplicationController
   end
 
   def delete
-    thread = MbThread.find(params[:id])
-    thread.destroy
-    User.where(id: thread.user_id).update_all('total_posts = total_posts - 1')
-    redirect_to "/boards/#{params[:board_id]}"
+    if session[:user] && session[:user][:admin] == 1
+      thread = MbThread.find(params[:id])
+      thread.destroy
+      User.where(id: thread.user_id).update_all('total_posts = total_posts - 1')
+      redirect_to "/boards/#{params[:board_id]}"
+    else
+      @message = "Error: Forbidden action"
+      render 'layouts/message'
+    end
   end
 
 end

@@ -16,8 +16,8 @@ div class="css_table"
       tr
         td
           - if session[:user] && session[:user]["admin"] == 1
-            a href="/boards/#{params[:id]}/threads/#{x.id}/delete" style="color: #e03434; margin-right: 15px;"
-              | X
+            a href="/boards/#{params[:id]}/threads/#{x.id}/delete" style="font-size: 0.8em; color: #e03434; margin-right: 15px;"
+              | Delete
           a href="/boards/#{params[:id]}/threads/#{x.id}" #{x.title}
         td
           a href="/users/#{x.user_id}" #{x.username}
