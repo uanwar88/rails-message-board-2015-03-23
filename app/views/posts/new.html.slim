@@ -1,7 +1,7 @@
 div class = "new_thread" style="max-width:575px;"
   h2 Post reply
   div class="form"
-    = form_for :post, url: "/boards/#{params[:board_id]}/threads/#{params[:thread_id]}" do |f|
+    = form_for :post, url: "/boards/#{params[:board_id]}/threads/#{params[:thread_id]}/posts" do |f|
       h3 Message:
       = f.hidden_field :mb_thread_id, value: params[:thread_id]
       = f.text_area :message, {rows: 30, style: "width: 95%;"}

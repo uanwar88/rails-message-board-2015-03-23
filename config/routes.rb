@@ -1,24 +1,24 @@
 Rails.application.routes.draw do
-  root 'boards#index'
-  get 'boards/new' => 'boards#new'
-  post 'boards' => 'boards#create'
-  get 'boards/:id' => 'boards#show', as: "board"
+  root "boards#index"
 
-  get 'boards/:board_id/threads/new' => 'threads#new'
-  get '/boards/:board_id/threads/:id' => 'threads#show', as: "thread"
-  post 'boards/:id' => 'threads#create'
-  get 'boards/:board_id/threads/:id/delete' => 'threads#delete'
+  resources :boards, only: [:new, :create, :show] do
+    resources :threads, only: [:new, :show, :create] do
+      get :delete
+      resources :posts, only: [:new, :create, :edit, :update] do
+        get :delete
+      end
+    end
+  end
 
-  get '/boards/:board_id/threads/:thread_id/posts/new' => 'posts#new'
-  post '/boards/:board_id/threads/:thread_id' => 'posts#create'
-  get '/boards/:board_id/threads/:thread_id/posts/:id/delete' => 'posts#delete'
-  get '/boards/:board_id/threads/:thread_id/posts/:id/edit' => 'posts#edit'
-  patch '/boards/:board_id/threads/:thread_id/posts/:id' => 'posts#update'
+ patch "/boards/:board_id/threads/:id" => "threads#show"
 
-  get 'users/new' => 'users#new'
-  post 'users' => 'users#create'
-  get 'users/:id' => 'users#show'
-  get 'login' => 'users#login'
-  post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#destroy'
+ post "boards/:board_id/threads/:thread_id/posts/:id" => "posts#update"
+
+  resources :users, only: [:new, :show, :create]
+
+  scope controller: :sessions do
+    get 'login' => :login
+    post 'login' => :create
+    get 'logout' => :destroy
+  end
 end

@@ -1,3 +1,5 @@
+= javascript_tag "window._token = {name: '#{request_forgery_protection_token.to_s}', authenticity_token: '#{form_authenticity_token}'};"
+
 h1 style="margin-bottom: 5px;" #{@posts[0].post_title}
 a href="/boards/#{@board.id}" style="font-family: 'Lato';color: #4E9689; margin-left: 15px; text-decoration: none" ↳ #{@board.title}
 br
@@ -15,12 +17,14 @@ div class="posts_table"
           span style="color: #0f2c6a"
             h2 #{@posts[x].username}
             | Total posts: #{@posts[x].total_posts}
-        td
-          == simple_format(@posts[x].message)
+        td id="td-#{@posts[x].id}"
+          div id="post-#{@posts[x].id}"
+            == simple_format(@posts[x].message, {}, wrapper_tag: "span")
           - if session[:user]
             div style="float:right; margin-top: 20px; right: -5px;"
               - if session[:user]['username'] == @posts[x].username || session[:user]["admin"] == 1
-                  a href="/boards/#{params[:board_id]}/threads/#{@posts[x].mb_thread_id}/posts/#{@posts[x].id}/edit" style="font-size: 0.8em; color: #e03434"
+                  / a id="edit-post-#{@posts[x].id}" class="edit-post-links" href="/boards/#{params[:board_id]}/threads/#{@posts[x].mb_thread_id}/posts/#{@posts[x].id}/edit" style="font-size: 0.8em; color: #e03434"
+                  a id="#{@posts[x].id}" class="edit-post-links" href="javascript:void(0);" style="font-size: 0.8em; color: #e03434"
                     | Edit
               - if session[:user]["admin"] == 1
                 - if x == 0

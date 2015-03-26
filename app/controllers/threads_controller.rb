@@ -10,12 +10,12 @@ class ThreadsController < ApplicationController
   end
 
   def create
-    @board = Board.find(params[:id])
+    @board = Board.find(params[:board_id])
     user = User.find(session[:user]["id"])
-    thread = user.mb_threads.create(thread_params(params[:id]))
+    thread = user.mb_threads.create(thread_params(params[:board_id]))
     user.posts.create(post_params(thread.id))
     user.increment!(:total_posts)
-    redirect_to thread_path(params[:id], thread)
+    redirect_to board_thread_path(params[:board_id], thread)
   end
 
   def new
@@ -34,7 +34,7 @@ class ThreadsController < ApplicationController
 
   def delete
     if session[:user] && session[:user][:admin] == 1
-      thread = MbThread.find(params[:id])
+      thread = MbThread.find(params[:thread_id])
       thread.destroy
       User.where(id: thread.user_id).update_all('total_posts = total_posts - 1')
       redirect_to "/boards/#{params[:board_id]}"
