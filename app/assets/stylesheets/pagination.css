@@ -1,0 +1,26 @@
+.pagination {
+  margin-bottom: 15px;
+  margin-right: 35px;
+  text-align: right;
+  font-family: "Lato";
+}
+.pagination a {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #233774;
+  padding: 5px;
+}
+.current {
+  font-size: 1.1em;
+  color: #8a9bbf;
+  padding: 5px;
+}
+.previous_page {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #233774;
+}
+.disabled {
+  font-size: 1.1em;
+  color: #8a9bbf;
+}

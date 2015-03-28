@@ -5,7 +5,7 @@ class ThreadsController < ApplicationController
    #@thread =  MbThread.find(params[:id])
     #@posts = @thread.posts
    @posts = Post.joins(:user).joins(:mb_thread).where(mb_thread_id: params[:id]).select("posts.*, users.username AS username, users.total_posts
-   AS total_posts, mb_threads.title AS post_title").order(created_at: :asc)
+   AS total_posts, mb_threads.title AS post_title").order(created_at: :asc).page(params[:page])
    @board = Board.find(params[:board_id])
   end
 

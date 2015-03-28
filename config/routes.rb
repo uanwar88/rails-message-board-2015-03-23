@@ -10,10 +10,6 @@ Rails.application.routes.draw do
     end
   end
 
- patch "/boards/:board_id/threads/:id" => "threads#show"
-
- post "boards/:board_id/threads/:thread_id/posts/:id" => "posts#update"
-
   resources :users, only: [:new, :show, :create]
 
   scope controller: :sessions do
@@ -21,4 +17,10 @@ Rails.application.routes.draw do
     post 'login' => :create
     get 'logout' => :destroy
   end
+
+  get "admin/console" => "boards#adminform"
+  post "admin/update" => "boards#adminupdate"
+  patch "/boards/:board_id/threads/:id" => "threads#show"
+  post "boards/:board_id/threads/:thread_id/posts/:id" => "posts#update"
+
 end

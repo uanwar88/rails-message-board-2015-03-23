@@ -1,14 +1,17 @@
 = javascript_tag "window._token = {name: '#{request_forgery_protection_token.to_s}', authenticity_token: '#{form_authenticity_token}'};"
 
-h1 style="margin-bottom: 5px;" #{@posts[0].post_title}
-a href="/boards/#{@board.id}" style="font-family: 'Lato';color: #4E9689; margin-left: 15px; text-decoration: none" ↳ #{@board.title}
-br
-a href="/" style="font-family: 'Lato';color: #4E9689; margin-left: 34px; text-decoration: none" ↳ Home
-div style="font-family: 'Lato';color: #4E9689; margin-left: 15px; margin-bottom: 25px;"
-  p
+div class="board-heading"
+  h1 style="margin-bottom: 5px;" #{@posts[0].post_title}
+  a href="/boards/#{@board.id}" style="font-family: 'Lato';color: #4E9689; margin-left: 15px; text-decoration: none" ↳ #{@board.title}
+  br
+  a href="/" class="blue_lato" style="font-family: 'Lato';color: #4E9689; margin-left: 34px; text-decoration: none" ↳ Home
+
+div style="font-family: 'Lato';color: #4E9689; margin-left: 35px; margin-top: 15px;"
+  p.darkblue style="margin:0;"
     strong
       | Current participants:&nbsp;
     = join_usernames(@posts)
+= will_paginate @posts
 div class="posts_table"
   table
     - @posts.each_index do |x|
@@ -23,7 +26,6 @@ div class="posts_table"
           - if session[:user]
             div style="float:right; margin-top: 20px; right: -5px;"
               - if session[:user]['username'] == @posts[x].username || session[:user]["admin"] == 1
-                  / a id="edit-post-#{@posts[x].id}" class="edit-post-links" href="/boards/#{params[:board_id]}/threads/#{@posts[x].mb_thread_id}/posts/#{@posts[x].id}/edit" style="font-size: 0.8em; color: #e03434"
                   a id="#{@posts[x].id}" class="edit-post-links" href="javascript:void(0);" style="font-size: 0.8em; color: #e03434"
                     | Edit
               - if session[:user]["admin"] == 1
@@ -33,11 +35,9 @@ div class="posts_table"
                 - else
                     a href="/boards/#{params[:board_id]}/threads/#{params[:id]}/posts/#{@posts[x].id}/delete" style="font-size: 0.8em; color: #e03434"
                       |  | Delete
-
 br
-br
-
 - if session[:user]
-  a href='/boards/#{params[:board_id]}/threads/#{@posts[0].mb_thread_id}/posts/new' class="no_decoration"
-    div class='btn'
-      | Reply
+  div style="text-align: right; margin-right: 35px; margin-top: 0;"
+    a href='/boards/#{params[:board_id]}/threads/#{@posts[0].mb_thread_id}/posts/new' class="no_decoration"
+      div class='btn'
+        | Reply

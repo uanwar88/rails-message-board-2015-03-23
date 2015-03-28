@@ -17,8 +17,30 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @threads = MbThread.joins(:user).where(board_id: params[:id]).select("mb_threads.*, users.username AS username")
+    @threads = MbThread.joins(:user).where(board_id: params[:id]).select("mb_threads.*, users.username AS username").page(params[:page])
     @board = Board.find(params[:id])
+  end
+
+  def adminform
+    if (session[:user] && session[:user]["admin"] == 1) || (session[:user] && session[:user]["id"] == 1)
+      render :adminform
+    else
+      @message = "You do not have permission"
+      render "layouts/message"
+    end
+  end
+
+  def adminupdate
+    if (session[:user] && session[:user]["admin"] == 1) || (session[:user] && session[:user]["id"] == 1)
+      user = User.find(params[:user][:id])
+      user.admin = params[:user][:level]
+      user.save
+      @message = "#{user.username} has been granted privilege level #{params[:user][:level]}"
+      render "layouts/message"
+    else
+      @message = "You do not have permission"
+      render "layouts/message"
+    end
   end
 
 end

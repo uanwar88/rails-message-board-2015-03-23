@@ -1,7 +1,10 @@
-h1 style="margin-bottom: 5px;" #{@board.title}
-a href="/" style="font-family: 'Lato';color: #4E9689; margin-left: 15px; text-decoration: none" ↳ Home
-br
-br
+div class="board-heading"
+  h1 style="margin-bottom: 5px;" #{@board.title}
+  a href="/" class="blue_lato" style="font-family: 'Lato'; margin-left: 15px; text-decoration: none" ↳ Home
+  br
+  br
+
+= will_paginate @threads
 
 div class="css_table"
   table
@@ -25,6 +28,7 @@ div class="css_table"
 br
 br
 - if session[:user]
-  a href="/boards/#{params[:id]}/threads/new" class="no_decoration"
-    div class='btn'
-      | New thread
+  div style="text-align: right; margin-right: 35px;"
+    a href="/boards/#{params[:id]}/threads/new" class="no_decoration"
+      div class='btn'
+        | New thread

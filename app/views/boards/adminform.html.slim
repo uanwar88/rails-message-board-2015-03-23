@@ -1,0 +1,11 @@
+div class="new_thread" style="padding: 15px 25px 15px 25px;"
+  h3 style="color: white; margin-bottom: 15px; border-bottom: solid 1px #ffffff; " Administrator console
+  = form_for :user, url: "/admin/update" do |f|
+    h3 style="color: white;" User ID:
+    = f.text_field :id, {style: "width: 95%;"}
+    br
+    br
+    h3 style="color: white;" Privilege level:
+    = f.text_field :level, {style: "width: 95%;"}
+    br
+    = f.submit "Submit"

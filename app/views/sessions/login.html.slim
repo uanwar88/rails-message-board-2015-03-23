@@ -4,25 +4,13 @@ div class = "new_thread"
     = form_for :user, url: "/login" do |f|
       h3 style="color: white;" Username:
       = f.text_field :username, style: "width: 95%;"
-      br
-      br
-      h3 style="color: white;" Password:
-      = f.password_field :password, style: "width: 95%;"
-      br
-      br
+      h3 style="margin-top: 15px; color: white;" Password:
+      = f.password_field :password, style: "width: 95%; margin-bottom: 15px;"
       = f.submit "Submit"
-    p style="margin-left: 20px; padding: 0;"
-    | Don't have an account?
-    br
-    a href="/users/new" Make one now.
-
-  /   form action="/login" method="post"
-  /     h3 style="color: white;" Username:
-  /     input type="text" maxlength="50" name="username" style="width: 95%;"
-  /     br
-  /     br
-  /     h3 style="color: white;" Password:
-  /     input type="password" maxlength="50" name="password" style="width: 95%;"
-  /     br
-  /     br
-  /     input type="submit" class='btn' style="margin-left: 0px; margin-top: 0px;"
+  div class="form" style="color: #f7f7f7;"
+    p style="margin-top: 10px; margin-bottom: 0;"
+      | Don't have an account?
+      br
+      a style="text-decoration: underline; color: #f7f7f7;" href="/users/new" Make one now.
+    p style="margin-bottom: 0; margin-top: 10px;"
+      a style="text-decoration: none; font-size: 0.7em; color: #f7f7f7;" href="/users/forgotpass" Forgot password?

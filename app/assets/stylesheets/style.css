@@ -1,7 +1,6 @@
 html {
   height: 100%;
 }
-
 body {
   height: 100%;
   background-color: #F4FCE8;
@@ -16,15 +15,18 @@ body {
   font-size: 1.65em;
 }
 .header a {
-  color: #4E9689;
+  color: #4e7e96;
   text-decoration: none;
+}
+.header h1 {
+  margin-right: 25px;
 }
 .blue_lato {
   font-family: 'Lato', sans-serif;
-  color: #4E9689;
+  color: #4e7e96;
 }
 p a {
-  color: #4E9689;
+  color: #4e7e96;
   text-decoration: none;
 }
 .container {
@@ -40,15 +42,16 @@ p a {
 }
 .main_content h1 {
   font-family: 'Lato';
-  color: #4E9689;
+  color: #4e7e96;
 }
 .main_content h3 {
   font-family: 'Lato';
-  color: #4E9689;
+  color: #233774;
+  margin-top: 10px;
 }
 .main_content h4 {
   font-family: 'Lato';
-  color: #4E9689;
+  color: #4e7e96;
 }
 .row {
   background-color: #C3FF68;
@@ -58,14 +61,13 @@ p a {
 }
 td a {
   text-decoration: none;
-  color: #4E9689;
+  color: #4e7e96;
   font-size: large;
 }
 .btn {
-
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
   font-family: Arial;
   color: #ffffff;
   font-size: 20px;
@@ -79,10 +81,17 @@ td a {
   margin-left: 0;
   margin-top: 0px;
   margin-bottom: 0px;
+  display: inline-block;
 }
 .btn:hover {
   background: #ff3c3c;
   text-decoration: none;
+}
+.login-btn {
+  border: solid 1px #4E9689;
+  background-color: #3abfc3;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .no_decoration {
   text-decoration: none;
@@ -115,8 +124,18 @@ td a {
 .form h3 {
   padding: 0px;
   margin: 0px;
+  color: #ffffff;
 }
 .pfix {
   line-height: 0;
   margin: 0;
+}
+.darkblue {
+  color: #233774;
+}
+ul.errors-list li {
+  margin-bottom: 10px;
+}
+.board-heading {
+  margin-left: 10px;
 }

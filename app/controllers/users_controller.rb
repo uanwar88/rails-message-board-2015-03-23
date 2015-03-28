@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       session[:user] = @user
       redirect_to root_path
     else
+      
       render "new"
     end
   end

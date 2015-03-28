@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324180427) do
+ActiveRecord::Schema.define(version: 20150327182556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150324180427) do
     t.datetime "updated_at",                  null: false
     t.string   "password_digest"
     t.integer  "admin"
+    t.string   "email"
   end
 
   add_foreign_key "mb_threads", "boards"

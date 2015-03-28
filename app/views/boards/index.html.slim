@@ -1,18 +1,18 @@
 - if !session[:user]
-  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6dc9cd;"
+  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #3abfc3; margin-left: 10px; margin-bottom: 10px;"
     a href="/login" class="no_decoration" style="color: #ffffff;"
       | Log in
   br
   br
 - if session[:user]
-  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #6dc9cd;"
+  div class='btn' style="border: solid 1px #4E9689; color: #4E9689; background-color: #3abfc3; margin-left: 10px;"
     a href="/logout" class="no_decoration" style="color: #ffffff"
       | Log out
   br
   br
 
 - if session[:user]
-  h3
+  h3 class="greeting"
     | Welcome, #{session[:user]['username']}!
 - if session[:user] && session[:user]["admin"] == 1
   h4 style="color: #fd4e4e;"
