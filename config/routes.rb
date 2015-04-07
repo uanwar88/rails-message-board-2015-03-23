@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   root "boards#index"
 
-  resources :boards, only: [:new, :create, :show] do
-    resources :threads, only: [:new, :show, :create] do
-      get :delete
-      resources :posts, only: [:new, :create, :edit, :update] do
+    resources :boards, only: [:new, :create, :show] do
+      resources :threads, only: [:new, :show, :create] do
         get :delete
+        resources :posts, only: [:new, :create, :edit, :update] do
+          get :delete
+        end
       end
     end
-  end
+
 
   resources :users, only: [:new, :show, :create]
 

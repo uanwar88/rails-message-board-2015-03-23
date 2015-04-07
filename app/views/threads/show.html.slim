@@ -18,8 +18,12 @@ div class="posts_table"
       tr
         td
           span style="color: #0f2c6a"
-            h2 #{@posts[x].username}
+            h2 style="margin: 0;" #{@posts[x].username}
+          span style="color: #74a9d8"
             | Total posts: #{@posts[x].total_posts}
+            / #{Time.zone.at(post.created_at).strftime("%B %-d, %Y %l:%M %p")}
+            br
+            | #{@posts[x].created_at.strftime("%B %-d, %Y %l:%M %p")}
         td id="td-#{@posts[x].id}"
           div id="post-#{@posts[x].id}"
             == simple_format(@posts[x].message, {}, wrapper_tag: "span")

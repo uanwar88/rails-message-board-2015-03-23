@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327182556) do
+ActiveRecord::Schema.define(version: 20150329023531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20150327182556) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "location_id"
+  end
+
+  add_index "boards", ["location_id"], name: "index_boards_on_location_id", using: :btree
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "city"
+    t.string   "state"
+    t.string   "abbrstate"
+    t.integer  "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mb_threads", force: :cascade do |t|
@@ -55,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150327182556) do
     t.string   "email"
   end
 
+  add_foreign_key "boards", "locations"
   add_foreign_key "mb_threads", "boards"
   add_foreign_key "mb_threads", "users"
   add_foreign_key "posts", "mb_threads"

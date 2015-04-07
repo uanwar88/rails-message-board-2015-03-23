@@ -4,6 +4,8 @@ gem "slim-rails"
 
 gem 'will_paginate', '~> 3.0.5'
 
+gem 'bootstrap-sass'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
