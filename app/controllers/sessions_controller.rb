@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:user][:username])
     if user && user.authenticate(params[:user][:password])
       session[:user] = user
-      redirect_to root_path
+      redirect_to(session[:return_to])
+      session[:return_to] = nil
     else
       @message = "Incorrect username or password!"
       render "layouts/message"
@@ -16,6 +17,8 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    redirect_to :back
+  rescue ActionController::RedirectBackError
     redirect_to root_path
   end
 end

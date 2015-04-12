@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_action :store_referrer
+
   def index
     @locations = Location.all
   end

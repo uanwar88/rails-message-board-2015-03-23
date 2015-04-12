@@ -8,12 +8,12 @@ class UsersController < ApplicationController
       session[:user] = @user
       redirect_to root_path
     else
-      
+
       render "new"
     end
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:email, :username, :password)
   end
 end

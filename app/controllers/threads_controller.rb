@@ -1,5 +1,6 @@
 class ThreadsController < ApplicationController
   helper ThreadsHelper
+  before_action :store_referrer
 
   def show
    #@thread =  MbThread.find(params[:id])

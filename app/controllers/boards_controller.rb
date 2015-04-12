@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :store_referrer
+
   def index
     @boards = Board.all
   end
