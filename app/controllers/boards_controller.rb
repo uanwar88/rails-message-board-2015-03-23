@@ -17,8 +17,9 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @threads = MbThread.joins(:user).where(board_id: params[:id]).select("mb_threads.*, users.username AS username").page(params[:page])
+    @location = Location.find(params[:location_id])
     @board = Board.find(params[:id])
+    @threads = MbThread.joins(:user).where(board_id: params[:id]).select("mb_threads.*, users.username AS username").page(params[:page])
   end
 
   def adminform

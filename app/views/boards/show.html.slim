@@ -1,34 +1,7 @@
-div class="board-heading"
-  h1 style="margin-bottom: 5px;" #{@board.title}
-  a href="/" class="blue_lato" style="font-family: 'Lato'; margin-left: 15px; text-decoration: none" ↳ Home
-  br
-  br
+= render partial: "partials/location"
 
-= will_paginate @threads
-
-div class="css_table"
-  table
-    tr
-      td Thread title
-      td Posted by
-    - if @threads.empty?
-      tr
-        td colspan="2" style="text-align: center"
-          | There doesn't appear to be any threads here yet!
-    - @threads.each do |x|
-      tr
-        td
-          - if session[:user] && session[:user]["admin"] == 1
-            a href="/boards/#{params[:id]}/threads/#{x.id}/delete" style="font-size: 0.8em; color: #e03434; margin-right: 15px;"
-              | Delete
-          a href="/boards/#{params[:id]}/threads/#{x.id}" #{x.title}
-        td
-          a href="/users/#{x.user_id}" #{x.username}
-
-br
-br
-- if session[:user]
-  div style="text-align: right; margin-right: 35px;"
-    a href="/boards/#{params[:id]}/threads/new" class="no_decoration"
-      div class='btn'
-        | New thread
+- @threads.each do |x|
+  div.col-md-4.col-md-offset-4.text-center.lato.bottom-border.background-color.silver
+    h2
+      a.dark-blue href="/locations/#{@location.id}/boards/#{@board.id}/threads/#{x.id}" style="text-decoration: none;"
+        | #{x.title}

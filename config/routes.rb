@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root "boards#index"
-
+  root "locations#index"
+  
+  resources :locations, only: [:show] do
     resources :boards, only: [:new, :create, :show] do
       resources :threads, only: [:new, :show, :create] do
         get :delete
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
 
 
   resources :users, only: [:new, :show, :create]
