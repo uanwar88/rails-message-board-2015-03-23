@@ -11,17 +11,27 @@ html
 
   body
     div.container-fluid
-      div class="row bottom-border dark-blue background-color silver"
+      div.row.bottom-border.dark-blue.background-color.silver
         div.col-md-4.col-md-offset-4.text-center
-          a href="/" style="text-decoration: none;"
+          a.dark-blue href="/" style="text-decoration: none;"
             h1.lato.larger SquareTalk
         - if !@login
           div.col-md-4.text-right.hidden-xs
-            a href="/login"
-              h4 Login
+            - if session[:user]
+              h4.dark-silver Welcome, #{session[:user]["username"]}!
+              a.dark-blue href="/logout"
+                h4 Logout
+            - else
+              a.dark-blue href="/login"
+                h4 Login
           div.col-md-4.text-center.visible-xs-block
-            a href="/login"
-              h4 Login
+            - if session[:user]
+              h4.dark-silver Welcome, #{session[:user]["username"]}!
+              a.dark-blue href="/logout"
+                h4 Logout
+            - else
+              a.dark-blue href="/login"
+                h4 Login
       div class='row'
         == yield
     div class='footer'

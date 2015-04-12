@@ -7,7 +7,7 @@ div.col-lg-4.col-lg-offset-4.lato.dark-silver
         = f.text_field :username, class: "form-control"
       div.form-group
         = f.label "Password"
-        = f.password_field nil, class: "form-control"
+        = f.password_field :password, class: "form-control"
       div.text-center
         = f.submit "Submit", class: "btn btn-default", style: "margin-top: 20px;"
         br
@@ -15,4 +15,4 @@ div.col-lg-4.col-lg-offset-4.lato.dark-silver
 
       h4.text-center Don't have an account?
       div.text-center
-        a href="/users/new" Make one now.
+        a.dark-blue href="/users/new" Make one now.

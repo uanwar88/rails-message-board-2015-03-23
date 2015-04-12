@@ -7,6 +7,7 @@ class ThreadsController < ApplicationController
    @posts = Post.joins(:user).joins(:mb_thread).where(mb_thread_id: params[:id]).select("posts.*, users.username AS username, users.total_posts
    AS total_posts, mb_threads.title AS post_title, posts.created_at").order(created_at: :asc).page(params[:page])
    @board = Board.find(params[:board_id])
+   @location = Location.find(params[:location_id])
   end
 
   def create
@@ -15,7 +16,7 @@ class ThreadsController < ApplicationController
     thread = user.mb_threads.create(thread_params(params[:board_id]))
     user.posts.create(post_params(thread.id))
     user.increment!(:total_posts)
-    redirect_to board_thread_path(params[:board_id], thread)
+    redirect_to location_board_thread_path(params[:location_id], params[:board_id], thread)
   end
 
   def new

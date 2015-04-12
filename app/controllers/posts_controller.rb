@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     user = User.find(session[:user]["id"])
     user.posts.create(post_params)
     user.increment! :total_posts
-    redirect_to board_thread_path(params[:board_id], params[:thread_id])
+    redirect_to location_board_thread_path(params[:location_id],params[:board_id], params[:thread_id])
   end
 
   def post_params

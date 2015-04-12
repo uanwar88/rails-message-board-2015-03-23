@@ -1,7 +1,23 @@
 = render partial: "partials/location"
 
+div.col-md-4.col-md-offset-4.text-center.lato
+  - if session[:user] && @location && @board
+    a.dark-blue href="/locations/#{@location.id}/boards/#{@board.id}/threads/new"
+      div.btn.btn-info.btn-lg.margin.margin-15
+          | Post something
+
+- if @threads.length == 0
+  div.col-md-4.col-md-offset-4.text-center.lato.bottom-border
+    h2.dark-silver.small
+      | No posts here yet
 - @threads.each do |x|
-  div.col-md-4.col-md-offset-4.text-center.lato.bottom-border.background-color.silver
-    h2
-      a.dark-blue href="/locations/#{@location.id}/boards/#{@board.id}/threads/#{x.id}" style="text-decoration: none;"
-        | #{x.title}
+  - if x.title
+    div.col-md-4.col-md-offset-4.lato.bottom-border
+      div.col-md-6
+        h2
+          a.med-blue href="/locations/#{@location.id}/boards/#{@board.id}/threads/#{x.id}" style="text-decoration: none;"
+            | #{x.title}
+      div.col-md-6.text-right
+        br
+        h4.light-silver
+          | Posted by #{x.username}

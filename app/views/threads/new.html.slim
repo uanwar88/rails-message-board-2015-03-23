@@ -1,21 +1,28 @@
-div class = "new_thread" style="max-width:575px;"
-  h2 Post reply
-  div class="form"
-    = form_for :mb_thread, url: "/boards/#{params[:board_id]}/threads" do |f|
-      h3 Title:
-      = f.text_field :title, {style: "width: 95%;"}
-      br
-      br
-      h3 Message:
-      = f.text_area :message, {rows: 30, style: "width: 95%;"}
-      br
-      br
-      = f.submit "Submit", { class: 'btn', style: "margin-left: 0px; margin-top: 0px;" }
+div.col-lg-4.col-lg-offset-4.lato.dark-silver
+  div.col-md-4.col-md-offset-4.col-lg-10.col-lg-offset-1.col-sm-4.col-sm-offset-4.col-xs-10.col-xs-offset-1
+    h2.text-center New talk
+    = form_for :mb_thread, url: "/locations/#{params[:location_id]}/boards/#{params[:board_id]}/threads" do |f|
+      div.form-group
+        = f.label "What's up?"
+        = f.text_field :title, class: "form-control"
+      div.form-group
+        = f.label "The details:"
+        = f.text_area :message, class: "form-control", rows: 20
+      div.text-center
+        = f.submit "Submit", class: "btn btn-default", style: "margin-top: 20px;"
 
-    / form action="/reply" method="post"
-    /   h3 Message:
-    /   textarea name="message" rows="25" style="width: 95%;"
-    /   br
-    /   br
-    /   input type='hidden' value='#{@thread_id}' name="thread_id"
-    /   input type="submit" class='btn' style="margin-left: 0px; margin-top: 0px;"
+
+
+/ div class = "new_thread" style="max-width:575px;"
+/   h2 Post reply
+/   div class="form"
+/     = form_for :mb_thread, url: "/boards/#{params[:board_id]}/threads" do |f|
+/       h3 Title:
+/       = f.text_field :title, {style: "width: 95%;"}
+/       br
+/       br
+/       h3 Message:
+/       = f.text_area :message, {rows: 30, style: "width: 95%;"}
+/       br
+/       br
+/       = f.submit "Submit", { class: 'btn', style: "margin-left: 0px; margin-top: 0px;" }
