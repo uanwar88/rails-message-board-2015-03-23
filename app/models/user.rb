@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { within: 4..20 },
+  validates :username, presence: true, uniqueness: true, length: { within: 4..20 },
     format: { with: /\A[a-zA-Z0-9_-]+\Z/ }
-  validates :email, presence: true, uniqueness: true
-  validates_format_of :email, :with => /@/
+  validates :email, presence: true, uniqueness: true, format: { with: /@/ }
+  validates :password, presence: true, confirmation: true, length: { minimum: 6 }, if: lambda{ new_record? || !password.nil? }
+  validates :password_confirmation, presence: true, if: lambda{ new_record? || !password.nil? }
 end
